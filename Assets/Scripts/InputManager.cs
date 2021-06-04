@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 public class InputManager : MonoBehaviour
 {
 	public LayerMask mouseInputMask;
-	public GameObject buildingPrefab;
-	public int cellSize = 3;
+	//public GameObject buildingPrefab;
 
 	private void Update()
 	{
@@ -28,20 +27,13 @@ public class InputManager : MonoBehaviour
 			if (didHit)
 			{
 				Vector3 position = hit.point - transform.position;
-				CreateBuilding(CalculateGridPosition(position));
+				//CreateBuilding(CalculateGridPosition(position));
 			}
 		}
-	}
+	}	
 
-	public Vector3 CalculateGridPosition(Vector3 inputPosition)
-	{
-		int x = Mathf.FloorToInt((float)inputPosition.x / cellSize);
-		int z = Mathf.FloorToInt((float)inputPosition.z / cellSize);
-		return new Vector3(x * cellSize, 0, z * cellSize);
-	}
-
-	void CreateBuilding(Vector3 gridPosition)
-	{
-		Instantiate(buildingPrefab, gridPosition, Quaternion.identity);
-	}
+	//void CreateBuilding(Vector3 gridPosition)
+	//{
+	//	Instantiate(buildingPrefab, gridPosition, Quaternion.identity);
+	//}
 }
