@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class InputManager : MonoBehaviour
 {
 	public LayerMask mouseInputMask;
-	//public GameObject buildingPrefab;
+	Action<Vector3> OnPointerDownHandler;
+
 
 	private void Update()
 	{
@@ -27,13 +29,22 @@ public class InputManager : MonoBehaviour
 			if (didHit)
 			{
 				Vector3 position = hit.point - transform.position;
-				//CreateBuilding(CalculateGridPosition(position));
+				if (OnPointerDownHandler != null)
+				{
+					OnPointerDownHandler.Invoke(position);
+				}
 			}
 		}
-	}	
+	}
 
-	//void CreateBuilding(Vector3 gridPosition)
-	//{
-	//	Instantiate(buildingPrefab, gridPosition, Quaternion.identity);
-	//}
+	public void AddListenerOnPointerDownHandlerEvent(Action<Vector3> listener)
+	{
+		OnPointerDownHandler += listener;
+	}
+
+	public void RemoveListenerOnPointerDownHandlerEvent(Action<Vector3> listener)
+	{
+		OnPointerDownHandler -= listener;
+	}
+
 }
