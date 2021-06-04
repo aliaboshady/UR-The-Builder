@@ -843,6 +843,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementManager: {fileID: 266436279}
   inputManager: {fileID: 2058002183}
+  width: 100
+  length: 100
 --- !u!4 &1890205065
 Transform:
   m_ObjectHideFlags: 0
